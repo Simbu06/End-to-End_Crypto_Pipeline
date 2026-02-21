@@ -6,15 +6,16 @@ This project implements a production-style **ETL (Extract, Transform, Load) pipe
 
 The pipeline:
 
-- Extracts real-time crypto data from a public API
+- Extracts real-time cryptocurrency data from a public API
 - Stores raw JSON data in MongoDB Atlas (Cloud)
 - Transforms and validates the dataset
 - Loads structured data into Neon PostgreSQL (Cloud) using SQLAlchemy
 - Maintains local backups:
   - Raw data → Local MongoDB
   - Transformed data → Local PostgreSQL
+- Runs automatically every day at 12:00 AM using a cron job
 
-This project demonstrates real-world data engineering practices including cloud storage, ORM-based loading, validation testing, and disaster recovery strategies.
+This project demonstrates real-world data engineering concepts including cloud database integration, ORM usage, validation testing, backup strategy, and scheduled batch processing.
 
 ---
 
@@ -35,6 +36,8 @@ Neon PostgreSQL (Structured Data - Cloud) via SQLAlchemy
 Local Backups  
    • Raw → Local MongoDB  
    • Transformed → Local PostgreSQL  
+   ↓  
+Cron Job Scheduler (Runs Daily at 12:00 AM)
 
 ---
 
@@ -45,11 +48,12 @@ Local Backups
 - Pandas
 - MongoDB Atlas (Cloud NoSQL Database)
 - Local MongoDB (Backup)
-- Neon PostgreSQL (Cloud Relational DB)
+- Neon PostgreSQL (Cloud Relational Database)
 - Local PostgreSQL (Backup)
 - SQLAlchemy (ORM)
 - PyMongo
 - Logging
+- Cron (Linux Scheduler)
 - Git
 
 ---
@@ -78,7 +82,7 @@ End-to-End_Crypto_Pipeline/
 
 - Fetches cryptocurrency market data from API
 - Stores raw JSON response in MongoDB Atlas
-- Preserves original data for auditing and reprocessing
+- Preserves unstructured data for auditing and reprocessing
 
 ---
 
@@ -87,12 +91,12 @@ End-to-End_Crypto_Pipeline/
 - Reads raw data from MongoDB Atlas
 - Converts JSON into Pandas DataFrame
 - Cleans and standardizes columns
-- Handles missing/null values
+- Handles missing values
 - Prepares analytics-ready dataset
 
 ---
 
-### 3️⃣ Assertion Testing
+### 3️⃣ Data Validation (Assertion Testing)
 
 Before loading, validation checks ensure:
 
@@ -101,16 +105,16 @@ Before loading, validation checks ensure:
 - Numeric columns contain valid numeric data
 - Dataset is not empty
 
-This prevents corrupt or invalid data from entering PostgreSQL.
+This prevents corrupt or incomplete data from entering PostgreSQL.
 
 ---
 
 ### 4️⃣ Load Layer (Using SQLAlchemy)
 
 - Connects to Neon PostgreSQL
-- Uses SQLAlchemy engine for database interaction
+- Uses SQLAlchemy engine for database operations
 - Loads structured dataset into relational table
-- Ensures scalable and maintainable DB integration
+- Ensures scalable and maintainable DB interaction
 
 ---
 
@@ -121,11 +125,26 @@ To ensure disaster recovery:
 - Raw cloud data (MongoDB Atlas) → backed up to Local MongoDB
 - Structured cloud data (Neon PostgreSQL) → backed up to Local PostgreSQL
 
+This ensures data redundancy and recovery capability.
+
+---
+
+## ⏰ Automation & Scheduling
+
+The pipeline is fully automated using a Linux cron job.
+
+It runs daily at 12:00 AM.
+
+Example Cron Entry:
+
+0 0 * * * /usr/bin/python3 /path/to/project/main.py >> /path/to/project/pipeline.log 2>&1
+
 This ensures:
 
-- Data redundancy
-- Local development support
-- Recovery from cloud failures
+- Daily batch data ingestion
+- Automated transformation and loading
+- Scheduled backups
+- Consistent, production-style execution
 
 ---
 
@@ -133,53 +152,39 @@ This ensures:
 
 ### 1️⃣ Clone Repository
 
-```bash
-git clone https://github.com/Simbu06/End-to-End_Crypto_Pipeline.git
-cd End-to-End_Crypto_Pipeline
-```
+git clone https://github.com/Simbu06/End-to-End_Crypto_Pipeline.git  
+cd End-to-End_Crypto_Pipeline  
 
 ### 2️⃣ Create Virtual Environment
 
-```bash
-python -m venv venv
-```
+python -m venv venv  
 
 Activate:
 
 Ubuntu/Mac:
-```bash
-source venv/bin/activate
-```
+source venv/bin/activate  
 
 Windows:
-```bash
-venv\Scripts\activate
-```
+venv\Scripts\activate  
 
 ### 3️⃣ Install Dependencies
 
-```bash
-pip install -r requirement.txt
-```
+pip install -r requirement.txt  
 
 ### 4️⃣ Configure Environment Variables
 
 Set your connection strings:
 
-```
-MONGO_ATLAS_URI=your_cloud_mongo_uri
-LOCAL_MONGO_URI=your_local_mongo_uri
-NEON_POSTGRES_URI=your_cloud_postgres_uri
-LOCAL_POSTGRES_URI=your_local_postgres_uri
-```
+MONGO_ATLAS_URI=your_cloud_mongo_uri  
+LOCAL_MONGO_URI=your_local_mongo_uri  
+NEON_POSTGRES_URI=your_cloud_postgres_uri  
+LOCAL_POSTGRES_URI=your_local_postgres_uri  
 
 ---
 
 ### 5️⃣ Run Pipeline
 
-```bash
-python main.py
-```
+python main.py  
 
 ---
 
@@ -196,10 +201,11 @@ python main.py
 ## 🧠 Data Engineering Concepts Demonstrated
 
 - Raw vs Processed Data Separation
-- NoSQL + Relational Database Integration
-- Cloud + Local Backup Strategy
+- Cloud NoSQL + Cloud Relational DB Integration
 - SQLAlchemy ORM Usage
 - Assertion-Based Data Validation
+- Cloud-to-Local Backup Strategy
+- Automated Batch Scheduling with Cron
 - Modular ETL Architecture
 - Logging & Error Handling
 
@@ -210,9 +216,9 @@ python main.py
 - Docker containerization
 - Apache Airflow orchestration
 - Incremental data loading
-- Data versioning
-- CI/CD with GitHub Actions
-- Monitoring & alerting integration
+- CI/CD using GitHub Actions
+- Monitoring and alerting integration
+- Data quality framework (Pandera / Great Expectations)
 
 ---
 
