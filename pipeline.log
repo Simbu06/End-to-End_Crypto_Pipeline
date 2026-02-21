@@ -1,0 +1,9 @@
+2026-02-21 18:14:19,737 - INFO - Pipeline started
+2026-02-21 18:14:21,199 - ERROR - Pipeline failed: batch op errors occurred, full error: {'writeErrors': [{'index': 0, 'code': 66, 'errmsg': "Performing an update on the path '_id' would modify the immutable field '_id'", 'op': {'q': {'id': 'bitcoin'}, 'u': {'$set': {'_id': ObjectId('69999a5a92a0f7f9e7efdbc9'), 'id': 'bitcoin', 'ath': 126080, 'ath_change_percentage': -45.96377, 'ath_date': '2025-10-06T18:57:42.558Z', 'atl': 67.81, 'atl_change_percentage': 100371.64562, 'atl_date': '2013-07-06T00:00:00.000Z', 'circulating_supply': 19992659.0, 'currency': 'USD', 'current_price': 68128.82, 'fully_diluted_valuation': 1362040661710, 'high_24h': 68237, 'image': 'https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400', 'last_updated': datetime.datetime(2026, 2, 21, 17, 13, 21, 700000), 'low_24h': 66585, 'market_cap': 1362040661710, 'market_cap_change_24h': 9053586347, 'market_cap_change_percentage_24h': 0.66916, 'market_cap_rank': 1, 'max_supply': 21000000.0, 'name': 'Bitcoin', 'price_change_24h': 654.34, 'price_change_percentage_24h': 0.96976, 'roi': None, 'symbol': 'btc', 'total_supply': 19992659.0, 'total_volume': 47939821550}}, 'multi': False, 'upsert': True}}], 'writeConcernErrors': [], 'nInserted': 0, 'nUpserted': 0, 'nMatched': 0, 'nModified': 0, 'nRemoved': 0, 'upserted': []}
+2026-02-21 18:17:44,866 - INFO - Pipeline started
+2026-02-21 18:17:54,706 - INFO - Backup completed
+2026-02-21 18:21:18,087 - INFO - Extract completed
+2026-02-21 18:21:18,167 - INFO - Transform completed
+2026-02-21 18:21:18,177 - INFO - Test completed
+2026-02-21 18:21:25,653 - INFO - Load completed
+2026-02-21 18:21:25,653 - INFO - Pipeline finished successfully
