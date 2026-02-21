@@ -148,6 +148,31 @@ This ensures:
 
 ---
 
+## 📸 Project Screenshots
+
+### 🔹 MongoDB Atlas (Raw Data - Cloud)
+
+![MongoDB Atlas Raw Data](assets/mongo_atlas_raw.png)
+
+---
+
+### 🔹 Neon PostgreSQL (Structured Data - Cloud)
+
+![Neon PostgreSQL Table](assets/neon_postgres_table.png)
+
+---
+
+### 🔹 Local MongoDB Backup (Raw Data)
+
+![Local MongoDB Backup](assets/mongo_local_backup.png)
+
+---
+
+### 🔹 Local PostgreSQL Backup (Transformed Data)
+
+![Local PostgreSQL Backup](assets/postgres_local_backup.png)
+
+
 ## ▶️ How to Run the Project
 
 ### 1️⃣ Clone Repository
