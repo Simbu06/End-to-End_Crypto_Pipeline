@@ -4,10 +4,15 @@ from transform import transform_crypto_data
 from load import load_data_to_db
 from test import test
 from backup_db import backup
+from pathlib import Path
 import logging
 
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = BASE_DIR / "logs"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
 logging.basicConfig(
-    filename="pipeline.log",
+    filename=str(OUTPUT_DIR / "pipeline.log"),
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )

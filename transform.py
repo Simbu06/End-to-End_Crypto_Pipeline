@@ -1,9 +1,14 @@
 import pandas as pd
+from pathlib import Path
 from pymongo import MongoClient
 
 client = MongoClient('mongodb://simbu:simbu007@localhost:27017/')
 db = client['crypto_data']
 collection = db['Data']
+
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = BASE_DIR / "files"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def transform_crypto_data():
     data = list(collection.find({}, {'_id': 0}))
@@ -63,7 +68,8 @@ def transform_crypto_data():
         (df['total_volume'] >= 0)
     ]
 
-    df.to_csv('transformed_crypto_data.csv', index=False)
+    output_path = OUTPUT_DIR / 'transformed_crypto_data.csv'
+    df.to_csv(output_path, index=False)
     
     print('Data transformation completed successfully.')
     

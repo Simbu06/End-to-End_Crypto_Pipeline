@@ -1,8 +1,10 @@
 import pandas as pd
+from pathlib import Path
 
 def test():
 
-    df = pd.read_csv("transformed_crypto_data.csv")
+    BASE_DIR = Path(__file__).resolve().parent
+    df = pd.read_csv(BASE_DIR / "files" / "transformed_crypto_data.csv")
 
     assert (df['current_price'] > 0).all(), 'invalid current_price detected'
     assert (df['market_cap'] >= 0).all(), 'invalid market_cap detected'

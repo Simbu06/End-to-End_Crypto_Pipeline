@@ -7,3 +7,8 @@
 2026-02-21 18:21:18,177 - INFO - Test completed
 2026-02-21 18:21:25,653 - INFO - Load completed
 2026-02-21 18:21:25,653 - INFO - Pipeline finished successfully
+2026-02-23 02:24:09,163 - INFO - Pipeline started
+2026-02-23 02:24:26,178 - INFO - Backup completed
+2026-02-23 02:29:09,722 - INFO - Extract completed
+2026-02-23 02:29:09,813 - INFO - Transform completed
+2026-02-23 02:29:09,814 - ERROR - Pipeline failed: [Errno 2] No such file or directory: 'transformed_crypto_data.csv'
