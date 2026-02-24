@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://simbu:simbu007@localhost:27017/')
+client = MongoClient('mongodb+srv://silambarsan:simbu007@cluster0.4auu8z9.mongodb.net/?appName=Cluster0')
 db = client['crypto_data']
 collection = db['Data']
 
